@@ -75,7 +75,7 @@ public class NewsArticleController {
         ArrayList<NewsArticle> publishedArticles = newsArticleService.getPublishedArticles();
 
         if(publishedArticles.isEmpty())
-            return ResponseEntity.status(404).body(new ApiResponse("There is no published articles yet."));
+            return ResponseEntity.status(404).body(new ApiResponse("No published articles found."));
 
         return ResponseEntity.status(200).body(publishedArticles);
     }
@@ -88,9 +88,31 @@ public class NewsArticleController {
             return ResponseEntity.status(400).body(new ApiResponse("Category must be either politics, sports or technology only."));
 
         if(categoryArticles.isEmpty())
-            return ResponseEntity.status(404).body(new ApiResponse("There is no news articles in category: " + category + " yet."));
+            return ResponseEntity.status(404).body(new ApiResponse("No news articles in category: " + category + " found."));
 
         return ResponseEntity.status(200).body(categoryArticles);
+
+    }
+
+    //EXTRA
+    @GetMapping("/get-sorted-by-date")
+    public ResponseEntity<?> getArticlesSortedByPublishDate() {
+        ArrayList<NewsArticle> sortedArticles = newsArticleService.sortByPublishedDate();
+
+        if (sortedArticles.isEmpty())
+            return ResponseEntity.status(404).body(new ApiResponse("No published articles found."));
+
+        return ResponseEntity.status(200).body(sortedArticles);
+    }
+
+    @GetMapping("/get-author/{author}")
+    public ResponseEntity<?> getArticlesByAuthor(@PathVariable String author){
+        ArrayList<NewsArticle> authorArticles = newsArticleService.getArticlesByAuthor(author);
+
+        if(authorArticles.isEmpty())
+            return ResponseEntity.status(404).body(new ApiResponse("No news articles for the author: " + author + " found."));
+
+        return ResponseEntity.status(200).body(authorArticles);
 
     }
 

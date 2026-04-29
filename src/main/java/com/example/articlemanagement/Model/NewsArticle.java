@@ -5,6 +5,7 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import org.hibernate.validator.constraints.URL;
 
 import java.time.LocalDate;
 
@@ -32,6 +33,7 @@ public class NewsArticle {
     private String category;
 
     @NotEmpty(message = "Image URL can't be empty.")
+    @URL(message = "Image URL must be a valid URL.")
     private String imageUrl;
 
     private boolean isPublished; //it's false by default

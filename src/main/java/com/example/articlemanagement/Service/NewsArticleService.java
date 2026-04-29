@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 @Service
 public class NewsArticleService {
@@ -78,5 +79,25 @@ public class NewsArticleService {
                 categoryArticles.add(a);
         }
         return categoryArticles;
+    }
+
+    //EXTRA
+    public ArrayList<NewsArticle> sortByPublishedDate(){
+        ArrayList<NewsArticle> sortedArticles = new ArrayList<>();
+        for (NewsArticle a : articles) {
+            if (a.isPublished())
+                sortedArticles.add(a);
+        }
+        sortedArticles.sort((a1, a2) -> a2.getPublishDate().compareTo(a1.getPublishDate()));
+        return sortedArticles;
+    }
+
+    public ArrayList<NewsArticle> getArticlesByAuthor(String author){
+        ArrayList<NewsArticle> authorArticles = new ArrayList<>();
+        for(NewsArticle a: articles){
+            if(a.getAuthor().equalsIgnoreCase(author))
+                authorArticles.add(a);
+        }
+        return authorArticles;
     }
 }
