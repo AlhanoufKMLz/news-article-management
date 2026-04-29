@@ -43,4 +43,16 @@ public class NewsArticleService {
         }
         return false;
     }
+
+    public int publishArticle(String id){
+        for(NewsArticle a: articles){
+            if(a.getId().equalsIgnoreCase(id)) {
+                if (a.isPublished())
+                    return 0; //already published
+                a.setPublished(true);
+                return 1; //found and updated
+            }
+        }
+        return -1; //not found
+    }
 }

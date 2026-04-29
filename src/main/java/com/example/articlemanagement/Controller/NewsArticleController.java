@@ -55,4 +55,17 @@ public class NewsArticleController {
         return ResponseEntity.status(404).body(new ApiResponse("News Article with ID: " + id + " not found"));
     }
 
+    //EXTRA ENDPOINTS
+    @PutMapping("/publish/{id}")
+    public ResponseEntity<?> publishArticle(@PathVariable String id){
+        int result = newsArticleService.publishArticle(id);
+
+        if(result == 0)
+            return ResponseEntity.status(400).body(new ApiResponse("News Article with ID: " + id + " is already published"));
+        if(result == -1)
+            return ResponseEntity.status(404).body(new ApiResponse("News Article with ID: " + id + " not found"));
+
+        return ResponseEntity.status(200).body(new ApiResponse("News Article published successfully"));
+    }
+
 }
