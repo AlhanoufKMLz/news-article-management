@@ -1,0 +1,46 @@
+package com.example.articlemanagement.Service;
+
+import com.example.articlemanagement.Model.NewsArticle;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+
+@Service
+public class NewsArticleService {
+
+    ArrayList<NewsArticle> articles = new ArrayList<>();
+
+    public ArrayList<NewsArticle> getArticles(){
+        return articles;
+    }
+
+    public boolean addArticle(NewsArticle article){
+        for(NewsArticle a: articles){
+            if(a.getId().equalsIgnoreCase(article.getId()))
+                return false;
+        }
+
+        articles.add(article);
+        return true;
+    }
+
+    public boolean updateArticle(String id, NewsArticle article){
+        for(int i = 0; i < articles.size(); i++){
+            if(articles.get(i).getId().equalsIgnoreCase(id)) {
+                articles.set(i, article);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteArticle(String id){
+        for(int i = 0; i < articles.size(); i++){
+            if(articles.get(i).getId().equalsIgnoreCase(id)) {
+                articles.remove(i);
+                return true;
+            }
+        }
+        return false;
+    }
+}
