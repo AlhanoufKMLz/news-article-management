@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RestController
 @RequestMapping("/api/v1/news-artical")
 @RequiredArgsConstructor
@@ -66,6 +68,16 @@ public class NewsArticleController {
             return ResponseEntity.status(404).body(new ApiResponse("News Article with ID: " + id + " not found"));
 
         return ResponseEntity.status(200).body(new ApiResponse("News Article published successfully"));
+    }
+
+    @GetMapping("/get-published")
+    public ResponseEntity<?> getPublishedArticles(){
+        ArrayList<NewsArticle> publishedArticles = newsArticleService.getPublishedArticles();
+
+        if(publishedArticles.isEmpty())
+            return ResponseEntity.status(404).body(new ApiResponse("There is no published articles yet."));
+
+        return ResponseEntity.status(200).body(publishedArticles);
     }
 
 }

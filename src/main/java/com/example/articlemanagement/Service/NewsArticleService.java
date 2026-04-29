@@ -55,4 +55,13 @@ public class NewsArticleService {
         }
         return -1; //not found
     }
+
+    public ArrayList<NewsArticle> getPublishedArticles(){
+        ArrayList<NewsArticle> publishedArticles = new ArrayList<>();
+        for(NewsArticle a: articles){
+            if(a.isPublished())
+                publishedArticles.add(a);
+        }
+        return publishedArticles;
+    }
 }
