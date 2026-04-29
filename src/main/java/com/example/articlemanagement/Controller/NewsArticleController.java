@@ -80,4 +80,18 @@ public class NewsArticleController {
         return ResponseEntity.status(200).body(publishedArticles);
     }
 
+    @GetMapping("/get-category/{category}")
+    public ResponseEntity<?> getArticlesByCategory(@PathVariable String category){
+        ArrayList<NewsArticle> categoryArticles = newsArticleService.getArticlesByCategory(category);
+
+        if(categoryArticles == null)
+            return ResponseEntity.status(400).body(new ApiResponse("Category must be either politics, sports or technology only."));
+
+        if(categoryArticles.isEmpty())
+            return ResponseEntity.status(404).body(new ApiResponse("There is no news articles in category: " + category + " yet."));
+
+        return ResponseEntity.status(200).body(categoryArticles);
+
+    }
+
 }

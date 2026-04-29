@@ -29,7 +29,7 @@ public class NewsArticle {
     private String content;
 
     @NotEmpty(message = "Category can't be empty.")
-    @Pattern(regexp = "^(politics|sports|technology)$")
+    @Pattern(regexp = "^(politics|sports|technology)$", message = "Category must be either politics, sports or technology only.")
     private String category;
 
     @NotEmpty(message = "Image URL can't be empty.")

@@ -64,4 +64,16 @@ public class NewsArticleService {
         }
         return publishedArticles;
     }
+
+    public ArrayList<NewsArticle> getArticlesByCategory(String category){
+        if(!category.equalsIgnoreCase("politics") && !category.equalsIgnoreCase("sports") && !category.equalsIgnoreCase("technology"))
+            return null;
+
+        ArrayList<NewsArticle> categoryArticles = new ArrayList<>();
+        for(NewsArticle a: articles){
+            if(a.getCategory().equalsIgnoreCase(category))
+                categoryArticles.add(a);
+        }
+        return categoryArticles;
+    }
 }
