@@ -3,6 +3,7 @@ package com.example.articlemanagement.Service;
 import com.example.articlemanagement.Model.NewsArticle;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @Service
@@ -27,6 +28,7 @@ public class NewsArticleService {
     public boolean updateArticle(String id, NewsArticle article){
         for(int i = 0; i < articles.size(); i++){
             if(articles.get(i).getId().equalsIgnoreCase(id)) {
+                article.setId(id); //make sure the user doesn't change the id
                 articles.set(i, article);
                 return true;
             }
@@ -50,6 +52,7 @@ public class NewsArticleService {
                 if (a.isPublished())
                     return 0; //already published
                 a.setPublished(true);
+                a.setPublishDate(LocalDate.now());
                 return 1; //found and updated
             }
         }

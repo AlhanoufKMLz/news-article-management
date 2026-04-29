@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 
 @RestController
-@RequestMapping("/api/v1/news-artical")
+@RequestMapping("/api/v1/news-article")
 @RequiredArgsConstructor
 public class NewsArticleController {
 

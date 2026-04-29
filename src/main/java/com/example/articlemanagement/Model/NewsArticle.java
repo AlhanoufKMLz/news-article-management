@@ -5,7 +5,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import org.hibernate.validator.constraints.URL;
 
 import java.time.LocalDate;
 
@@ -21,7 +20,7 @@ public class NewsArticle {
     private String title;
 
     @NotEmpty(message = "Author can't be empty.")
-    @Size(min = 4, max = 20, message = "Author must be between 5 and 20 characters.")
+    @Size(min = 5, max = 20, message = "Author must be between 5 and 20 characters.")
     private String author;
 
     @NotEmpty(message = "Content can't be empty.")
@@ -35,7 +34,7 @@ public class NewsArticle {
     @NotEmpty(message = "Image URL can't be empty.")
     private String imageUrl;
 
-    private boolean isPublished;
+    private boolean isPublished; //it's false by default
 
     private LocalDate publishDate;
 
