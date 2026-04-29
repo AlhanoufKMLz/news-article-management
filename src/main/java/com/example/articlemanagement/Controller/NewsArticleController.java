@@ -96,7 +96,7 @@ public class NewsArticleController {
 
     //EXTRA
     @GetMapping("/get-sorted-by-date")
-    public ResponseEntity<?> getArticlesSortedByPublishDate() {
+    public ResponseEntity<?> sortByPublishedDate() {
         ArrayList<NewsArticle> sortedArticles = newsArticleService.sortByPublishedDate();
 
         if (sortedArticles.isEmpty())
